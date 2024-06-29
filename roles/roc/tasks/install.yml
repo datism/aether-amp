@@ -56,6 +56,7 @@
       - /tmp/roc-values.yaml
     wait: true
     force: true
+    wait_timeout: "1h"
   when: inventory_hostname in groups['master_nodes']
 
 - name: deploy onos-operator from {{ amp.onosproject.helm.chart_ref }}
@@ -69,6 +70,7 @@
     values_files:
       - /tmp/roc-values.yaml
     wait: true
+    wait_timeout: "1h"
     force: true
   when: inventory_hostname in groups['master_nodes']
 
@@ -83,6 +85,7 @@
     values_files:
       - /tmp/roc-values.yaml
     wait: true
+    wait_timeout: "1h"
     force: true
   when: inventory_hostname in groups['master_nodes']
 

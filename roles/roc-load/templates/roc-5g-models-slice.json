@@ -1,0 +1,164 @@
+{
+    "default-target": "the-enterprise",
+    "Updates": {
+        "site-2.1.0": [
+            {
+                "description": "Aether Test Site",
+                "display-name": "Aether Site",
+                "site-id": "site-1",
+                "imsi-definition": {
+                    "mcc": "208",
+                    "mnc": "93",
+                    "enterprise": 1,
+                    "format": "CCCNNEESSSSSSSS"
+                },
+                "connectivity-service": {
+                    "core-5g": {
+                        "endpoint": "http://webui.omec.svc:5000/config"
+                    }
+                },           
+                "ip-domain": [
+                    {
+                        "admin-status": "ENABLE",
+                        "display-name": "IP pool",
+                        "dnn": "internet",
+                        "dns-primary": "8.8.8.8",
+                        "ip-domain-id": "ip-pool-1",
+                        "mtu": 1460,
+                        "subnet": "172.250.0.0/16"
+                    },
+
+                    {
+                        "admin-status": "ENABLE",
+                        "display-name": "IP Pool 2",
+                        "dnn": "internet",
+                        "dns-primary": "8.8.8.8",
+                        "ip-domain-id": "ip-pool-2",
+                        "mtu": 1460,
+                        "subnet": "172.248.0.0/16"
+                    }
+                ],
+                "small-cell": [
+                    {
+                        "small-cell-id": "gnb-1",
+                        "display-name": "gNodeB 1",
+                        "address": "gnb1",
+                        "enable": true,
+                        "tac": "0001"
+                    }
+                ],
+                "upf": [
+                    {
+                        "address": "upf",
+                        "display-name": "Aether UPF",
+                        "upf-id": "upf-1",
+                        "port": 8805,
+                        "config-endpoint": "http://upf-http.omec-slice-1.svc:8080"
+                    },
+
+                    {
+                        "address": "upf",
+                        "display-name": "Aether UPF 2",
+                        "upf-id": "upf-2",
+                        "port": 8805,
+                        "config-endpoint": "http://upf-http.omec-slice-2.svc:8080"
+                    }
+                ],
+                "slice": [
+                    {
+                        "default-behavior": "ALLOW-ALL",
+                        "display-name": "Aether Slice",
+                        "device-group": [
+                            {
+                                "device-group": "device-group-1",
+                                "enable": true
+                            }
+                        ],
+                        "filter": [],
+                        "slice-id": "slice-1",
+                        "connectivity-service": "5g",
+                        "sd": "010203",
+                        "sst": "1",
+                        "upf": "upf-1",
+                        "mbr": {
+                            "uplink": 50000000,
+                            "downlink": 500000000
+                        },
+                        "priority-traffic-rule": []
+                    },
+
+                    {
+                        "default-behavior": "ALLOW-ALL",
+                        "display-name": "Aether Slice 2",
+                        "device-group": [
+                            {
+                                "device-group": "device-group-2",
+                                "enable": true
+                            }
+                        ],
+                        "filter": [],
+                        "slice-id": "slice-2",
+                        "connectivity-service": "5g",
+                        "sd": "010205",
+                        "sst": "2",
+                        "upf": "upf-2",
+                        "mbr": {
+                            "uplink": 50000000,
+                            "downlink": 500000000
+                        },
+                        "priority-traffic-rule": []
+                    }
+                ],
+                "device-group": [
+                    {
+                        "display-name": "Aether Users",
+                        "device-group-id": "device-group-1",
+                        "device": [],
+                        "ip-domain": "ip-pool-1",
+                        "mbr": {
+                            "uplink": 500000000,
+                            "downlink": 500000000
+                        },
+                        "traffic-class": "class-1"
+                    },
+                    {
+                        "display-name": "Aether Users 2",
+                        "device-group-id": "device-group-2",
+                        "device": [],
+                        "ip-domain": "ip-pool-2",
+                        "mbr": {
+                            "uplink": 500000000,
+                            "downlink": 500000000
+                        },
+                        "traffic-class": "class-2"
+                    }
+                ]
+            }
+        ],
+        "traffic-class-2.1.0": [
+            {
+                "description": "High Priority TC",
+                "display-name": "Class 1",
+                "traffic-class-id": "class-1",
+                "pdb": 300,
+                "arp": 6,
+                "pelr": 6,
+                "qci": 9
+            },
+
+            {
+                "description": "High Priority TC",
+                "display-name": "Class 2",
+                "traffic-class-id": "class-2",
+                "pdb": 300,
+                "arp": 6,
+                "pelr": 6,
+                "qci": 9
+            }
+        ]
+    },
+    "Deletes": {},
+    "Extensions": {
+        "transaction-strategy-111": 1
+    }
+}
